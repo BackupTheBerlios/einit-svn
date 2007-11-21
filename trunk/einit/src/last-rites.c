@@ -251,6 +251,10 @@ int lastrites () {
 
  if (chdir (LRTMPPATH "/old")) perror ("chdir failed");
 
+ if (unlink (LRTMPPATH "/old/etc/mtab")) {
+  perror ("could not unlink /etc/mtab\b\b\b");
+ }
+
  if (pivot_root (LRTMPPATH, LRTMPPATH "/old")) perror ("couldn't pivot_root('" LRTMPPATH "', '" LRTMPPATH "/old')");
 
  if (chdir ("/")) perror ("chdir failed");
